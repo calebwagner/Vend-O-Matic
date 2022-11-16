@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_all_inventory, get_single_inventory_item, delete_inventory_item, delete_item
-from coins import get_all_coins, create_coin, get_coins, get_num_of_coins, delete_coin
+from inventory import get_all_inventory, get_single_inventory_item, delete_item
+from coins import create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
 
@@ -36,14 +36,16 @@ class HandleRequests(BaseHTTPRequestHandler):
             if id is not None:
                 response = f"remaining item quantity: {get_single_inventory_item(id)}"
             else:
-                response = f"remaining item quantities: {get_all_inventory()}"
+                response = f"remaining item quantities: {[get_all_inventory()]}"
         elif resource == "":
                 response = f"{get_coins()}"
 
         self.wfile.write(f"{response}".encode())
 
     def do_POST(self):
-        self._set_headers(201, None, None)
+        # todo:
+        # add dynamic value
+        self._set_headers(204, 1, None)
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
 
@@ -68,16 +70,18 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         remaining_inventory = get_single_inventory_item(id)
         coin_count = get_num_of_coins()
+        coin_count_minus_cost = int(coin_count) - 2
 
         if resource == "inventory":
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
-                self._set_headers(200, coin_count, remaining_inventory)
                 delete_item(id)
                 delete_coin()
+                self._set_headers(200, coin_count_minus_cost, remaining_inventory)
                 self.wfile.write(f"[quantity: {1}]".encode())
             elif int(coin_count) < 2:
                 self._set_headers(403, coin_count, None)
             else:
+                coin_count = 0
                 self._set_headers(404, coin_count, None)
 
         if resource == "":
