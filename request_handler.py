@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_all_inventory, get_single_inventory_item, delete_inventory_item, update_inventory_item
-from coins import get_all_coins, create_coin
+from inventory import get_all_inventory, get_single_inventory_item, delete_inventory_item, delete_item
+from coins import get_all_coins, create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
 
@@ -19,22 +19,14 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         return (resource, id)
 
-    def _set_headers(self, status):
+    def _set_headers(self, status, num_of_coins_returned_accepted, remaining_inventory):
         self.send_response(status)
-        self.send_header('Content-type', 'application/json')
-        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('X-Coins', num_of_coins_returned_accepted)
+        self.send_header('X-Inventory-Remaining', remaining_inventory)
         self.end_headers()
-
-    def do_OPTIONS(self):
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-        self.send_header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept')
-        self.end_headers()
-
 
     def do_GET(self):
-        self._set_headers(200)
+        self._set_headers(200, None, None)
 
         response = {}
 
@@ -45,48 +37,70 @@ class HandleRequests(BaseHTTPRequestHandler):
                 response = f"remaining item quantity: {get_single_inventory_item(id)}"
             else:
                 response = f"remaining item quantities: {get_all_inventory()}"
-        elif resource == "coins":
-                response = f"{get_all_coins()}"
+        elif resource == "":
+                response = f"{get_coins()}"
 
         self.wfile.write(f"{response}".encode())
 
     def do_POST(self):
-        self._set_headers(201)
+        self._set_headers(201, None, None)
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
 
-        # Convert JSON string to a Python dictionary
         post_body = json.loads(post_body)
 
-        # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Initialize new coin
         new_coin = None
 
-        # Add a new coin to the list
-        if resource == "coins":
+        if resource == "":
             new_coin = create_coin(post_body)
 
-        # Encode the new coin and send in response
         self.wfile.write(f"{new_coin}".encode())
 
+    def do_PUT(self):
+        content_len = int(self.headers.get('content-length', 0))
+        post_body = self.rfile.read(content_len)
 
-def do_PUT(self):
-    self._set_headers(204)
-    content_len = int(self.headers.get('content-length', 0))
-    post_body = self.rfile.read(content_len)
-    post_body = json.loads(post_body)
+        post_body = json.loads(post_body)
 
-    # Parse the URL
-    (resource, id) = self.parse_url(self.path)
+        (resource, id) = self.parse_url(self.path)
 
-    # Delete a single inventory item from the list
-    if resource == "inventory":
-        update_inventory_item(id, post_body)
+        remaining_inventory = get_single_inventory_item(id)
+        coin_count = get_num_of_coins()
 
-    # Encode the new inventory item and send in response
-    self.wfile.write("".encode())
+        if resource == "inventory":
+            if int(remaining_inventory) > 0 and int(coin_count) >= 2:
+                self._set_headers(200, coin_count, remaining_inventory)
+                delete_item(id)
+                delete_coin()
+                self.wfile.write(f"[quantity: {1}]".encode())
+            elif int(coin_count) < 2:
+                self._set_headers(403, coin_count, None)
+            else:
+                self._set_headers(404, coin_count, None)
+
+        if resource == "":
+            # todo:
+            # I know this isn't a dynamic value but the machine
+            # only accepts one coin at a time so I think this works
+            self._set_headers(204, 1, None)
+            create_coin(post_body)
+
+        # Encode the new inventory item and send in response
+        # todo:
+        # self.wfile.write(f"[quantity: {1}]".encode())
+
+    def do_DELETE(self):
+        num_of_coins_returned = get_num_of_coins()
+        self._set_headers(204, num_of_coins_returned, None)
+
+        (resource, id) = self.parse_url(self.path)
+
+        if resource == "":
+            delete_coin()
+
+        self.wfile.write("".encode())
 
 
 
