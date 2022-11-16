@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_all_inventory, get_single_inventory_item, delete_item
+from inventory import get_single_inventory_item, delete_item, get_all_inventory_count
 from coins import create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
@@ -36,7 +36,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             if id is not None:
                 response = f"remaining item quantity: {get_single_inventory_item(id)}"
             else:
-                response = f"remaining item quantities: {[get_all_inventory()]}"
+                response = f"remaining item quantities: {[int(get_all_inventory_count())]}"
         elif resource == "":
                 response = f"{get_coins()}"
 
@@ -86,7 +86,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "":
             # todo:
-            # I know this isn't a dynamic value but the machine
+            # I know this (1) isn't a dynamic value but the machine
             # only accepts one coin at a time so I think this works
             self._set_headers(204, 1, None)
             create_coin(post_body)
