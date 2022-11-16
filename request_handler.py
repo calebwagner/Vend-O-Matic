@@ -1,9 +1,22 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_all_inventory
+from inventory import get_all_inventory, get_single_inventory_item
 from coins import get_all_coins
 
 
 class HandleRequests(BaseHTTPRequestHandler):
+    def parse_url(self, path):
+        path_params = path.split("/")
+        resource = path_params[1]
+        id = None
+
+        try:
+            id = int(path_params[2])
+        except IndexError:
+            pass
+        except ValueError:
+            pass
+
+        return (resource, id)
 
     def _set_headers(self, status):
         self.send_response(status)
@@ -18,13 +31,19 @@ class HandleRequests(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept')
         self.end_headers()
 
+
     def do_GET(self):
         self._set_headers(200)
 
-        print(self.path)
+        response = {}
 
-        if self.path == "/inventory":
-            response = get_all_inventory()
+        (resource, id) = self.parse_url(self.path)
+
+        if resource == "inventory":
+            if id is not None:
+                response = f"{get_single_inventory_item(id)}"
+            else:
+                response = f"{get_all_inventory()}"
         if self.path == "/coins":
             response = get_all_coins()
         else:

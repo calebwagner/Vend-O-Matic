@@ -1,1 +1,1 @@
-from .request import get_all_inventory
+from .request import get_all_inventory, get_single_inventory_item

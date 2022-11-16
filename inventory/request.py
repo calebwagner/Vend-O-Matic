@@ -12,3 +12,12 @@ INVENTORY = [
 
 def get_all_inventory():
     return INVENTORY
+
+def get_single_inventory_item(id):
+    requested_item = None
+
+    for item in INVENTORY:
+        if item["id"] == id:
+            requested_item = item
+
+    return requested_item
