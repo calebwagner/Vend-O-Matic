@@ -1,1 +1,1 @@
-from .request import get_all_coins
+from .request import get_all_coins, create_coin

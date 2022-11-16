@@ -5,8 +5,8 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "Vending Machine",
-            "database": "machine.db"
+            "name": "Python Vending",
+            "database": "vending.db"
         }
     ],
 }
