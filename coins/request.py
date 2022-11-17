@@ -4,10 +4,8 @@ from models import Coin
 
 # The following functions are:
 # create_coin
-#
 # get_coins
 # get_num_of_coins
-#
 # delete_coin
 
 

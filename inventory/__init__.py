@@ -1,1 +1,1 @@
-from .request import get_all_inventory, get_single_inventory_item, delete_item, get_all_inventory_count, inventory_num_tracker
+from .request import get_all_inventory_objects, get_single_inventory_type_count, delete_item, get_total_inventory_count
