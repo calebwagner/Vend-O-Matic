@@ -7,15 +7,9 @@ import json
 # parse_url
 # _set_headers
 # do_GET
-# do_POST
 # do_PUT
 # do_DELETE
 
-# TODO: add dynamic value explanation
-# I know where I pass a 1 in as the argument isn't
-# a dynamic value like the requirements want but the
-# machine only accepts one coin at a time with the way
-# my logic works.
 
 class HandleRequests(BaseHTTPRequestHandler):
 
@@ -59,24 +53,6 @@ class HandleRequests(BaseHTTPRequestHandler):
         self.wfile.write(f"{response}".encode())
 
 
-    def do_POST(self):
-        # TODO: add dynamic value
-        self._set_headers(204, 1, None)
-        content_len = int(self.headers.get('content-length', 0))
-        post_body = self.rfile.read(content_len)
-
-        post_body = json.loads(post_body)
-
-        (resource, id) = self.parse_url(self.path)
-
-        new_coin = None
-
-        if resource == "":
-            new_coin = create_coin(post_body)
-
-        self.wfile.write(f"{new_coin}".encode())
-
-
     def do_PUT(self):
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
@@ -89,8 +65,12 @@ class HandleRequests(BaseHTTPRequestHandler):
         coin_count = get_num_of_coins()
         coin_count_minus_cost = int(coin_count) - 2
 
+        num_coins_accepted = (len(post_body))
+        num_items_vended = 0
+
         if resource == "inventory":
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
+                num_items_vended = 1
                 delete_item(id)
                 delete_coin()
                 get_remaining_inventory = get_single_inventory_type_count(id)
@@ -99,8 +79,7 @@ class HandleRequests(BaseHTTPRequestHandler):
                     coin_count_minus_cost,
                     get_remaining_inventory
                     )
-                # TODO: add dynamic value
-                self.wfile.write(f"quantity: {1}".encode())
+                self.wfile.write(f"quantity: {num_items_vended}".encode())
             elif int(coin_count) < 2:
                 self._set_headers(403, coin_count, None)
             else:
@@ -108,8 +87,7 @@ class HandleRequests(BaseHTTPRequestHandler):
                 self._set_headers(404, coin_count, None)
 
         if resource == "":
-            # TODO: add dynamic value
-            self._set_headers(204, 1, None)
+            self._set_headers(204, num_coins_accepted, None)
             create_coin(post_body)
 
 
