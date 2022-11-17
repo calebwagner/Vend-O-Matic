@@ -1,4 +1,4 @@
-# Vend-O-Matic 🎰 🪙🪙
+# Vend-O-Matic Installation Steps 🎰 🪙🪙
 
 ## Visual Studio Code
 
