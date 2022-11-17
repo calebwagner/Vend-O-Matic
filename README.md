@@ -1,5 +1,8 @@
 # Vend-O-Matic
 
+## Visual Studio Code
+
+Visit the [Visual Studio Code](https://code.visualstudio.com/) website to download and install the code editor.
 ## Python on Mac
 
 First, install the XCode Command Line tools with the following command in your terminal.
@@ -16,11 +19,6 @@ pyenv install 3.9.13
 pyenv global 3.9.13
 ```
 
-## Install Pipenv
-This will help manage 3rd party software later on.
-```sh
-pip3 install --user pipenv
-```
 ## Add the SQLTools SQLite extension![Screen Shot 2022-11-16 at 6 07 10 PM](https://user-images.githubusercontent.com/81569328/202322155-d1ac74ee-79d3-4ce0-aaf1-cc21db01124a.png)
 
 ## Add some data to the database
