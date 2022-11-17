@@ -61,15 +61,15 @@ Here are some other handy endpoints to test with ...
 ```bash
 http://localhost:8000/inventory
 ```
-Coins with id 1 ...
+SodaType with id 1 ...
 ```bash
 http://localhost:8000/inventory/1
 ```
-Coins with id 2
+SodaType with id ...
 ```bash
 http://localhost:8000/inventory/2
 ```
-Coins with id 3
+SodaType with id 3 ...
 ```bash
 http://localhost:8000/inventory/3
 ```
