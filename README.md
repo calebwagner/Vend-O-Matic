@@ -1,5 +1,8 @@
 # Vend-O-Matic Installation Steps 🎰 🪙🪙
 
+This project uses Python ![Python-Symbol](https://user-images.githubusercontent.com/81569328/202470670-a8a90c3e-2099-4f23-adf2-7a7fde37f4ea.png) and SQLite ![sqlite](https://user-images.githubusercontent.com/81569328/202470834-58f744d6-3592-43ab-9ed2-98bac31b7e17.png)
+
+
 ## Visual Studio Code
 
 Visit the [Visual Studio Code](https://code.visualstudio.com/) website to download and install the code editor.
@@ -8,7 +11,8 @@ Visit the [Visual Studio Code](https://code.visualstudio.com/) website to downlo
 
 Install the XCode Command Line tools with the following command in your terminal.
 
-```sh
+```sh![sqlite](https://user-images.githubusercontent.com/81569328/202470807-2965fb8f-a8a1-4280-8ff2-fee443a325f7.png)
+
 xcode-select --install
 ```
 
