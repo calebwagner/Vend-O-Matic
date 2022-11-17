@@ -60,6 +60,25 @@ pipenv shell
 code .
 ```
 
+## Keyboard Shortcut : Optional
+
+Here's keyboard shortcut so that you can run a query without needing to use your mouse to click on an icon every time.
+
+1. Cmd+Shift+P if you are on Mac.
+1. Type in "shortcut" in the search bar.
+1. Choose **Keyboard Shortcuts** from the results.
+1. In the search bar for shortcuts, type in "sqltoolrun".
+1. Double click the **SQLTools Connection: Run Current Query** option.
+1. Hold down the Command key and tap R twice if you are on Mac
+1. Then press enter to save the shortcut.
+
+## Continuation of Keyboard Shortcut 
+1. Copy the `CREATE TABLE` SQL commands below and paste it into the `vending.sql` file.
+1. Highlight all of the text.
+1. Press `Cmd+R+R` if you are on Mac. You will then be prompted to choose a connection.
+1.  Choose "Python Vending".
+1. A new tab will open in VS Code and you should see this message in it - **Query returned 0 rows**. That means it worked.
+
 ## Add some data to the database
 Now that we're here in VS Code lets start vending. In the `vend-o-matic/vending.sql` sql file hightlight the CREATE TABLE statments and click "Run on active connection" then hightlight the "INSERT INTO" statements and click "Run on active connection" so we can start with some data.
 
