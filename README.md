@@ -35,8 +35,25 @@ Now you're good to go.
 Before we go any further here's the ERD. Since the requirements say we'll have 5 of each 3 beverages I have the SodaType as the primary key and soda_type_id on the Soda table as the foreign key.
 <img width="811" alt="Screen Shot 2022-11-16 at 6 26 59 PM" src="https://user-images.githubusercontent.com/81569328/202324270-87d5dcbb-7ce8-4012-b621-ef39f1012a59.png">
 
-## Go to Postman
+## Now Postman time
 The port will be running on ...
 ```bash
 http://localhost:8000/
+```
+The base url will get you all coins available.
+Here are some other handy endpoints to test with ...
+```bash
+http://localhost:8000/inventory
+```
+Coins with id 1 ...
+```bash
+http://localhost:8000/inventory/1
+```
+Coins with id 2
+```bash
+http://localhost:8000/inventory/2
+```
+Coins with id 3
+```bash
+http://localhost:8000/inventory/3
 ```
