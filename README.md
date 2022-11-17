@@ -21,14 +21,26 @@ pyenv global 3.9.13
 
 ## Add the SQLTools SQLite extension![Screen Shot 2022-11-16 at 6 07 10 PM](https://user-images.githubusercontent.com/81569328/202322155-d1ac74ee-79d3-4ce0-aaf1-cc21db01124a.png)
 
+## Getting the code
+```bash
+git clone https://github.com/calebwagner/Vend-O-Matic.git
+```
+```bash
+cd Vend-O-Matic/
+```
+```bash
+code .
+```
+
 ## Add some data to the database
-In the `vend-o-matic/vending.sql` sql file hightlight the CREATE TABLE statments and click "Run on active connection" then hightlight the "INSERT INTO" statements and click "Run on active connection".
+In the `vend-o-matic/vending.sql` sql file hightlight the CREATE TABLE statments and click "Run on active connection" then hightlight the "INSERT INTO" statements and click "Run on active connection" so we can start with some data.
 
 ![Screen Shot 2022-11-16 at 6 16 03 PM](https://user-images.githubusercontent.com/81569328/202322973-b101d06a-9e37-436c-81dd-85d3361a3d29.png)
 
 Then start up the server by clicking the "Run and Debug" tab then play.
 
 ![Screen Shot 2022-11-16 at 6 18 08 PM](https://user-images.githubusercontent.com/81569328/202323418-2f768918-5c7f-4a52-a7fd-19cb8192a0d3.png)
+
 Now you're good to go.
 
 ## ERD
