@@ -8,7 +8,6 @@ from models import Soda
 # get_single_inventory_item
 #
 # delete_item
-# delete_item_deprecated
 
 
 def get_all_inventory():
@@ -93,43 +92,17 @@ def delete_item(id):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        DELETE FROM soda
-        WHERE id = ?
-        """, (id, ))
-
-def inventory_num_tracker(remaining_inventory):
-    hash_table = {}
-    inventory_num_list = []
-    last_num = 0
-
-    num_remaining_inventory = int(remaining_inventory)
-    inventory_num_list.append(num_remaining_inventory)
-    if (len(inventory_num_list) > 1):
-        last_num = (len(inventory_num_list)-1) -1
-    else:
-        last_num = inventory_num_list[0] - 1
-
-    print("----------- H E R E -----------------")
-    print("last_num: ", last_num)
-    return last_num
-
-
-
-
-# this would work in MySQL
-# apparently SQLite doesn't support LIMIT
-def delete_item_deprecated(id):
-    with sqlite3.connect("./vending.db") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
-        SELECT
-            s.id,
-            s.cost,
-            s.soda_type_id
-        FROM
-            soda s
+        DELETE FROM
+            soda
         WHERE
-            s.soda_type_id = ?
-        LIMIT 1;
-        """, ( id, ))
+            id = (
+                SELECT
+                    MIN(soda.id)
+                FROM
+                    soda
+                WHERE
+                    soda.soda_type_id = ?
+            )
+        """, (id, ))
+    get_single_inventory_item(id)
+

@@ -84,16 +84,13 @@ class HandleRequests(BaseHTTPRequestHandler):
         coin_count = get_num_of_coins()
         coin_count_minus_cost = int(coin_count) - 2
 
-        convert_inventory_to_num = int(remaining_inventory)
-        remaining_inventory_minus_one = convert_inventory_to_num -1
-
         if resource == "inventory":
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
                 delete_item(id)
                 delete_coin()
+                get_remaining_inventory = get_single_inventory_item(id)
                 inventory_num_tracker(remaining_inventory)
-                # remaining_inventory_min_deleted = int(remaining_inventory - 1)
-                self._set_headers(200, coin_count_minus_cost, remaining_inventory_minus_one)
+                self._set_headers(200, coin_count_minus_cost, get_remaining_inventory)
                 self.wfile.write(f"[quantity: {1}]".encode())
             elif int(coin_count) < 2:
                 self._set_headers(403, coin_count, None)
