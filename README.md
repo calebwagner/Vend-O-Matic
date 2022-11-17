@@ -16,8 +16,19 @@ xcode-select --install
 pyenv is a tool for managing multiple Python versions.
 ```bash
 brew install pyenv
+```
+```bash
 pyenv install 3.9.13
+```
+```bash
 pyenv global 3.9.13
+```
+
+## Install Pipenv
+
+This tool changes the scope of the current pip command to work on the current user account's local python package install location, rather than the system-wide package install location, which is the default.
+```sh
+pip3 install --user pipenv
 ```
 
 ## Visual Studio Code Extensions
@@ -36,6 +47,10 @@ git clone https://github.com/calebwagner/Vend-O-Matic.git
 ```
 ```bash
 cd Vend-O-Matic/
+```
+Start a virtual environment.
+```bash
+pipenv shell
 ```
 ```bash
 code .
