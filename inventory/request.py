@@ -3,14 +3,13 @@ import json
 from models import Soda
 
 # The following functions are:
-# get_all_inventory
-# get_all_inventory_count
-# get_single_inventory_item
-#
+# get_all_inventory_objects
+# get_total_inventory_count
+# get_single_inventory_type_count
 # delete_item
 
-
-def get_all_inventory():
+# leaving this here for testing purposes
+def get_all_inventory_objects():
     with sqlite3.connect("./vending.db") as conn:
 
         conn.row_factory = sqlite3.Row
@@ -34,7 +33,7 @@ def get_all_inventory():
     return json.dumps(sodas)
 
 
-def get_all_inventory_count():
+def get_total_inventory_count():
     with sqlite3.connect("./vending.db") as conn:
 
         conn.row_factory = sqlite3.Row
@@ -60,7 +59,7 @@ def get_all_inventory_count():
     return json.dumps(inventory_count)
 
 
-def get_single_inventory_item(soda_type_id):
+def get_single_inventory_type_count(soda_type_id):
     with sqlite3.connect("./vending.db") as conn:
 
         conn.row_factory = sqlite3.Row
@@ -104,5 +103,5 @@ def delete_item(id):
                     soda.soda_type_id = ?
             )
         """, (id, ))
-    get_single_inventory_item(id)
+    get_single_inventory_type_count(id)
 

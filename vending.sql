@@ -31,7 +31,11 @@ INSERT INTO `Soda` VALUES (null, 2, 2);
 INSERT INTO `Soda` VALUES (null, 2, 2);
 INSERT INTO `Soda` VALUES (null, 2, 2);
 INSERT INTO `Soda` VALUES (null, 2, 2);
+INSERT INTO `Soda` VALUES (null, 2, 2);
 
+
+INSERT INTO `Soda` VALUES (null, 2, 3);
+INSERT INTO `Soda` VALUES (null, 2, 3);
 INSERT INTO `Soda` VALUES (null, 2, 3);
 INSERT INTO `Soda` VALUES (null, 2, 3);
 INSERT INTO `Soda` VALUES (null, 2, 3);

@@ -1,16 +1,21 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_single_inventory_item, delete_item, get_all_inventory_count, inventory_num_tracker
+from inventory import get_single_inventory_type_count, get_total_inventory_count, get_all_inventory_objects, delete_item
 from coins import create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
 # The following functions in HandleRequests are:
 # parse_url
 # _set_headers
-#
 # do_GET
 # do_POST
 # do_PUT
 # do_DELETE
+
+# TODO: add dynamic value explanation
+# I know where I pass a 1 in as the argument isn't
+# a dynamic value like the requirements want but the
+# machine only accepts one coin at a time with the way
+# my logic works.
 
 class HandleRequests(BaseHTTPRequestHandler):
 
@@ -45,9 +50,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "inventory":
             if id is not None:
-                response = f"remaining item quantity: {get_single_inventory_item(id)}"
+                response = f"remaining item quantity: {get_single_inventory_type_count(id)}"
             else:
-                response = f"remaining item quantities: {[int(get_all_inventory_count())]}"
+                response = f"remaining item quantities: {[int(get_total_inventory_count())]}"
         elif resource == "":
                 response = f"{get_coins()}"
 
@@ -80,7 +85,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         (resource, id) = self.parse_url(self.path)
 
-        remaining_inventory = get_single_inventory_item(id)
+        remaining_inventory = get_single_inventory_type_count(id)
         coin_count = get_num_of_coins()
         coin_count_minus_cost = int(coin_count) - 2
 
@@ -88,10 +93,14 @@ class HandleRequests(BaseHTTPRequestHandler):
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
                 delete_item(id)
                 delete_coin()
-                get_remaining_inventory = get_single_inventory_item(id)
-                inventory_num_tracker(remaining_inventory)
-                self._set_headers(200, coin_count_minus_cost, get_remaining_inventory)
-                self.wfile.write(f"[quantity: {1}]".encode())
+                get_remaining_inventory = get_single_inventory_type_count(id)
+                self._set_headers(
+                    200,
+                    coin_count_minus_cost,
+                    get_remaining_inventory
+                    )
+                # TODO: add dynamic value
+                self.wfile.write(f"quantity: {1}".encode())
             elif int(coin_count) < 2:
                 self._set_headers(403, coin_count, None)
             else:
@@ -99,13 +108,9 @@ class HandleRequests(BaseHTTPRequestHandler):
                 self._set_headers(404, coin_count, None)
 
         if resource == "":
-            # TODO:
-            # I know this (1) isn't a dynamic value but the machine
-            # only accepts one coin at a time so I think this works
+            # TODO: add dynamic value
             self._set_headers(204, 1, None)
             create_coin(post_body)
-
-        # self.wfile.write(f"[quantity: {1}]".encode())
 
 
     def do_DELETE(self):
