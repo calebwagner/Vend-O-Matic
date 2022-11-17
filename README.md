@@ -119,4 +119,9 @@ http://localhost:8000/inventory/3
 
 ## Screen Recording
 
-Vend-O-Matic Postman Video - Watch Video
+<a href="https://www.loom.com/share/a7b21a3e844f4479b3083f04558d7ad3">
+    <p>Vend-O-Matic Postman Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a7b21a3e844f4479b3083f04558d7ad3-with-play.gif">
+</a>
+
+https://www.loom.com/share/a7b21a3e844f4479b3083f04558d7ad3
