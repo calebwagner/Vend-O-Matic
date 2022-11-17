@@ -62,7 +62,7 @@ code .
 
 ## Keyboard Shortcut : Optional
 
-Here's keyboard shortcut so that you can run a query without needing to use your mouse to click on an icon every time.
+Here's a keyboard shortcut so that you can run a query without needing to use your mouse to click on an icon every time.
 
 1. Cmd+Shift+P if you are on Mac.
 1. Type in "shortcut" in the search bar.
