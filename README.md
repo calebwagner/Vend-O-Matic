@@ -93,3 +93,10 @@ SodaType with id 3 ...
 ```bash
 http://localhost:8000/inventory/3
 ```
+
+## Screen Recording
+
+<a href="https://www.loom.com/share/33053e50677a486cbce21f5781865ca0">
+    <p>Vend-O-Matic Postman Preview - Watch Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/33053e50677a486cbce21f5781865ca0-with-play.gif">
+ </a>
