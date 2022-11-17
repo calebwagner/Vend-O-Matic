@@ -1,4 +1,4 @@
-# Vend-O-Matic 🎰 🪙🪙
+# Vend-O-Matic Installation Steps 🎰 🪙🪙
 
 ## Visual Studio Code
 
@@ -16,21 +16,41 @@ xcode-select --install
 pyenv is a tool for managing multiple Python versions.
 ```bash
 brew install pyenv
+```
+```bash
 pyenv install 3.9.13
+```
+```bash
 pyenv global 3.9.13
 ```
 
-## Add the SQLTools SQLite extension
+## Install Pipenv
 
-![Screen Shot 2022-11-16 at 6 07 10 PM](https://user-images.githubusercontent.com/81569328/202322155-d1ac74ee-79d3-4ce0-aaf1-cc21db01124a.png)
+This tool changes the scope of the current pip command to work on the current user account's local python package install location, rather than the system-wide package install location, which is the default.
+```sh
+pip3 install --user pipenv
+```
+
+## Visual Studio Code Extensions
+
+Install these extensions to get VS Code set up. You can also search for these extensions in the "Extensions" tab in VS Code and install them there.
+
+* [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+* [Python Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-extension-pack)
+* [SQLTools](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools)
+* [SQLTools: SQLite Driver](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-sqlite)
 
 ## Getting the code 0️⃣1️⃣1️⃣0️⃣1️⃣0️⃣0️⃣0️⃣ 0️⃣1️⃣1️⃣0️⃣1️⃣0️⃣0️⃣1️⃣
-Go back to your terminal of choice and run the following commands.
+In your terminal of choice and run the following commands.
 ```bash
 git clone https://github.com/calebwagner/Vend-O-Matic.git
 ```
 ```bash
 cd Vend-O-Matic/
+```
+Start a virtual environment.
+```bash
+pipenv shell
 ```
 ```bash
 code .
@@ -61,15 +81,15 @@ Here are some other handy endpoints to test with ...
 ```bash
 http://localhost:8000/inventory
 ```
-Coins with id 1 ...
+SodaType with id 1 ...
 ```bash
 http://localhost:8000/inventory/1
 ```
-Coins with id 2
+SodaType with id ...
 ```bash
 http://localhost:8000/inventory/2
 ```
-Coins with id 3
+SodaType with id 3 ...
 ```bash
 http://localhost:8000/inventory/3
 ```
