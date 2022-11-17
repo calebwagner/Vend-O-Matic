@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from inventory import get_single_inventory_item, delete_item, get_all_inventory_count
+from inventory import get_single_inventory_item, delete_item, get_all_inventory_count, inventory_num_tracker
 from coins import create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
@@ -88,7 +88,9 @@ class HandleRequests(BaseHTTPRequestHandler):
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
                 delete_item(id)
                 delete_coin()
-                self._set_headers(200, coin_count_minus_cost, remaining_inventory)
+                get_remaining_inventory = get_single_inventory_item(id)
+                inventory_num_tracker(remaining_inventory)
+                self._set_headers(200, coin_count_minus_cost, get_remaining_inventory)
                 self.wfile.write(f"[quantity: {1}]".encode())
             elif int(coin_count) < 2:
                 self._set_headers(403, coin_count, None)
