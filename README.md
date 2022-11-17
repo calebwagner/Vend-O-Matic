@@ -97,6 +97,7 @@ http://localhost:8000/inventory/3
 ## Screen Recording
 🚨 I'm just about done. I have to fix the requirement for `X-Inventory-Remaining: $[item quantity] for PUT /inventory/:id`. SQLite doesn't support the LIMIT clause so I need to figure out a work around to delete items when purchased. 
 <a href="https://www.loom.com/share/33053e50677a486cbce21f5781865ca0">
-    <p>Vend-O-Matic Postman Preview - Watch Video</p>
+    <p>Vend-O-Matic Postman</p>
     <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/33053e50677a486cbce21f5781865ca0-with-play.gif">
  </a>
+🔗 https://www.loom.com/share/33053e50677a486cbce21f5781865ca0
