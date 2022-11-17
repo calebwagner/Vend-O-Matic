@@ -80,23 +80,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         (resource, id) = self.parse_url(self.path)
 
-        print("----------------------------")
-        print("post_body: ", post_body)
-        print("resource: ", resource)
-        print("id: ", id)
-        print("----------------------------")
-
         remaining_inventory = get_single_inventory_item(id)
         coin_count = get_num_of_coins()
         coin_count_minus_cost = int(coin_count) - 2
 
-        print("----------------------------")
         convert_inventory_to_num = int(remaining_inventory)
         remaining_inventory_minus_one = convert_inventory_to_num -1
-        print("remaining_inventory: ", remaining_inventory_minus_one - 1)
-        print("----------------------------")
-
-        # inventory_num_tracker(remaining_inventory)
 
         if resource == "inventory":
             if int(remaining_inventory) > 0 and int(coin_count) >= 2:
