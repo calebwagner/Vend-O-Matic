@@ -20,12 +20,17 @@ pyenv install 3.9.13
 pyenv global 3.9.13
 ```
 
-## Add the SQLTools SQLite extension
+## Visual Studio Code Extensions
 
-![Screen Shot 2022-11-16 at 6 07 10 PM](https://user-images.githubusercontent.com/81569328/202322155-d1ac74ee-79d3-4ce0-aaf1-cc21db01124a.png)
+Install these extensions to get VS Code set up. You can also search for these extensions in the "Extensions" tab in VS Code and install them there.
+
+* [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+* [Python Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-extension-pack)
+* [SQLTools](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools)
+* [SQLTools: SQLite Driver](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-sqlite)
 
 ## Getting the code 0️⃣1️⃣1️⃣0️⃣1️⃣0️⃣0️⃣0️⃣ 0️⃣1️⃣1️⃣0️⃣1️⃣0️⃣0️⃣1️⃣
-Go back to your terminal of choice and run the following commands.
+In your terminal of choice and run the following commands.
 ```bash
 git clone https://github.com/calebwagner/Vend-O-Matic.git
 ```
