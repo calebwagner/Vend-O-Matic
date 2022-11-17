@@ -3,8 +3,17 @@ from inventory import get_single_inventory_item, delete_item, get_all_inventory_
 from coins import create_coin, get_coins, get_num_of_coins, delete_coin
 import json
 
+# The following functions in HandleRequests are:
+# parse_url
+# _set_headers
+#
+# do_GET
+# do_POST
+# do_PUT
+# do_DELETE
 
 class HandleRequests(BaseHTTPRequestHandler):
+
     def parse_url(self, path):
         path_params = path.split("/")
         resource = path_params[1]
@@ -19,11 +28,13 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         return (resource, id)
 
+
     def _set_headers(self, status, num_of_coins_returned_accepted, remaining_inventory):
         self.send_response(status)
         self.send_header('X-Coins', num_of_coins_returned_accepted)
         self.send_header('X-Inventory-Remaining', remaining_inventory)
         self.end_headers()
+
 
     def do_GET(self):
         self._set_headers(200, None, None)
@@ -42,9 +53,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         self.wfile.write(f"{response}".encode())
 
+
     def do_POST(self):
-        # todo:
-        # add dynamic value
+        # TODO: add dynamic value
         self._set_headers(204, 1, None)
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
@@ -59,6 +70,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_coin = create_coin(post_body)
 
         self.wfile.write(f"{new_coin}".encode())
+
 
     def do_PUT(self):
         content_len = int(self.headers.get('content-length', 0))
@@ -85,15 +97,14 @@ class HandleRequests(BaseHTTPRequestHandler):
                 self._set_headers(404, coin_count, None)
 
         if resource == "":
-            # todo:
+            # TODO:
             # I know this (1) isn't a dynamic value but the machine
             # only accepts one coin at a time so I think this works
             self._set_headers(204, 1, None)
             create_coin(post_body)
 
-        # Encode the new inventory item and send in response
-        # todo:
         # self.wfile.write(f"[quantity: {1}]".encode())
+
 
     def do_DELETE(self):
         num_of_coins_returned = get_num_of_coins()
@@ -109,12 +120,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 
 def main():
-    """Starts the server on port 8000 using the HandleRequests class
-    """
     host = ''
     port = 8000
     HTTPServer((host, port), HandleRequests).serve_forever()
-
 
 if __name__ == "__main__":
     main()
