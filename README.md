@@ -16,7 +16,12 @@ Install the XCode Command Line tools with the following command in your terminal
 xcode-select --install
 ```
 
-## Install Pyenv and Python
+## Install Homebrew, Pyenv, and Python
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 pyenv is a tool for managing multiple Python versions.
 ```bash
 brew install pyenv
