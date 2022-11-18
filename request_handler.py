@@ -86,9 +86,12 @@ class HandleRequests(BaseHTTPRequestHandler):
                 coin_count = 0
                 self._set_headers(404, coin_count, None)
 
-        if resource == "":
+        if resource == "" and int(post_body["coin"]) == 1:
             self._set_headers(204, num_coins_accepted, None)
             create_coin(post_body)
+        else:
+            self._set_headers(400, num_coins_accepted, None)
+            print("Coin value must be 1")
 
 
     def do_DELETE(self):
