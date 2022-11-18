@@ -92,6 +92,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             self._set_headers(204, num_coins_accepted, None)
             create_coin(post_body)
         else:
+            self._set_headers(400, num_coins_accepted, None)
             print("Coin value must be 1")
 
 
