@@ -57,15 +57,13 @@ class HandleRequests(BaseHTTPRequestHandler):
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
 
-        post_body = json.loads(post_body) # post_body: {'coin': 1}
+        post_body = json.loads(post_body)
 
         (resource, id) = self.parse_url(self.path)
 
         remaining_inventory = get_single_inventory_type_count(id)
         coin_count = get_num_of_coins()
         coin_count_minus_cost = int(coin_count) - 2
-
-        # coin_value = (post_body, sort_keys=True)
 
         num_coins_accepted = (len(post_body))
         num_items_vended = 0
