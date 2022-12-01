@@ -1,6 +1,6 @@
-# Vend-O-Matic Installation Steps 🎰 🪙🪙
+# Vend-O-Matic 🎰 🪙🪙
 
-This project uses Python ![Python-Symbol](https://user-images.githubusercontent.com/81569328/202470670-a8a90c3e-2099-4f23-adf2-7a7fde37f4ea.png) and SQLite ![sqlite](https://user-images.githubusercontent.com/81569328/202470834-58f744d6-3592-43ab-9ed2-98bac31b7e17.png)
+This project uses Python ![Python-Symbol](https://user-images.githubusercontent.com/81569328/202470670-a8a90c3e-2099-4f23-adf2-7a7fde37f4ea.png) and SQLite ![sqlite](https://user-images.githubusercontent.com/81569328/202470834-58f744d6-3592-43ab-9ed2-98bac31b7e17.png). The prompt was given during a coding interview.
 
 
 ## Visual Studio Code
@@ -122,11 +122,3 @@ SodaType with id 3 ...
 http://localhost:8000/inventory/3
 ```
 
-## Screen Recording
-
-<a href="https://www.loom.com/share/a7b21a3e844f4479b3083f04558d7ad3">
-    <p>Vend-O-Matic Postman Video</p>
-    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a7b21a3e844f4479b3083f04558d7ad3-with-play.gif">
-</a>
-
-https://www.loom.com/share/a7b21a3e844f4479b3083f04558d7ad3
