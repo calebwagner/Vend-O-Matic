@@ -2,6 +2,10 @@
 
 This project uses Python ![Python-Symbol](https://user-images.githubusercontent.com/81569328/202470670-a8a90c3e-2099-4f23-adf2-7a7fde37f4ea.png) and SQLite ![sqlite](https://user-images.githubusercontent.com/81569328/202470834-58f744d6-3592-43ab-9ed2-98bac31b7e17.png). The prompt was given during a coding interview.
 
+<img width="732" alt="Screen Shot 2022-12-10 at 10 28 19 AM" src="https://user-images.githubusercontent.com/81569328/206865017-7a84625b-4d26-43d0-a746-c83a0adc5b24.png">
+
+<img width="647" alt="Screen Shot 2022-12-10 at 10 27 34 AM" src="https://user-images.githubusercontent.com/81569328/206864993-dbc30657-ab87-4bdf-b820-4ffa93d4a0ab.png">
+
 
 ## Visual Studio Code
 
